@@ -11,8 +11,8 @@ metadata:
   name: check-sc-job
   namespace: robot-shop
 rules:
-- apiGroups: ["storage.k8s.io"]
-  resources: ["storageclass"]
+- apiGroups: ["ceph.rook.io"]
+  resources: ["cephclusters", "cephfilesystems"]
   verbs: [ "get", "list" ]
 ---
 kind: RoleBinding
