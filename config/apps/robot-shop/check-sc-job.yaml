@@ -47,11 +47,11 @@ spec:
               set -x
 
               while : ; do
-                if oc get sc -o "jsonpath={.items[*].metadata.annotations['storageclass\.kubernetes\.io/is-default-class']}" | grep -q true; then
-                  echo "INFO: Found default storage class."
+                if [[ "$(oc get cephfilesystem,cephcluster -n rook-ceph -ojsonpath={.items[*].status.phase})" == "Ready Ready" ]]; then
+                  echo "INFO: Ceph FileSystem and Ceph Cluster are ready."
                   exit 0
                 fi
-                echo "INFO: Default storage class not found, waiting."
+                echo "INFO: Ceph FileSystem or Ceph Cluster is not ready, waiting."
                 sleep 10
               done
       restartPolicy: Never
