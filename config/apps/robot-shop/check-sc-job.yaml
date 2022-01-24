@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: check-sc-job
+  namespace: robot-shop
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: check-sc-job
+  namespace: robot-shop
+rules:
+- apiGroups: ["storage.k8s.io"]
+  resources: ["storageclass"]
+  verbs: [ "get", "list" ]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: check-sc-job
+  namespace: robot-shop
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: check-sc-job
+subjects:
+- kind: ServiceAccount
+  name: check-sc-job
+  namespace: robot-shop
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+  name: check-sc
+  namespace: robot-shop
+spec:
+  template:
+    spec:
+      containers:
+        - name: config
+          image: quay.io/openshift/origin-cli:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -x
+
+              while : ; do
+                if oc get sc -o "jsonpath={.items[*].metadata.annotations['storageclass\.kubernetes\.io/is-default-class']}" | grep -q true; then
+                  echo "INFO: Found default storage class."
+                  exit 0
+                fi
+                echo "INFO: Default storage class not found, waiting."
+                sleep 10
+              done
+      restartPolicy: Never
+      serviceAccountName: check-sc-job
+  backoffLimit: 10
