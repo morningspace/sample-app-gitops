@@ -1,1 +1,5 @@
 ---
+robot-shop:
+  openshift: "true"
+  ocCreateRoute: "true"
+  nodeport: "true"
