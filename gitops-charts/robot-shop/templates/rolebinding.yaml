@@ -5,7 +5,7 @@ metadata:
   name: robot-shop-role-binding
   namespace: robot-shop
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-wave: "-1000"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -21,7 +21,7 @@ metadata:
   name: system:openshift:scc:anyuid
   namespace: robot-shop
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-wave: "-1000"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -37,7 +37,7 @@ metadata:
   name: system:openshift:scc:privileged
   namespace: robot-shop
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-wave: "-1000"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
