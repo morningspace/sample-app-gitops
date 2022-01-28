@@ -18,8 +18,6 @@ spec:
       kind: Deployment
       name: cart
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-catalogue
     patchTemplate: |
       spec:
@@ -33,8 +31,6 @@ spec:
       kind: Deployment
       name: catalogue
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-dispatch
     patchTemplate: |
       spec:
@@ -48,8 +44,6 @@ spec:
       kind: Deployment
       name: dispatch
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-mongodb
     patchTemplate: |
       spec:
@@ -63,8 +57,6 @@ spec:
       kind: Deployment
       name: mongodb
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-mysql
     patchTemplate: |
       spec:
@@ -78,8 +70,6 @@ spec:
       kind: Deployment
       name: mysql
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-payment
     patchTemplate: |
       spec:
@@ -93,8 +83,6 @@ spec:
       kind: Deployment
       name: payment
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-rabbitmq
     patchTemplate: |
       spec:
@@ -108,8 +96,6 @@ spec:
       kind: Deployment
       name: rabbitmq
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-ratings
     patchTemplate: |
       spec:
@@ -123,8 +109,6 @@ spec:
       kind: Deployment
       name: ratings
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-shipping
     patchTemplate: |
       spec:
@@ -138,8 +122,6 @@ spec:
       kind: Deployment
       name: shipping
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-user
     patchTemplate: |
       spec:
@@ -153,8 +135,6 @@ spec:
       kind: Deployment
       name: user
       namespace: robot-shop
-  serviceAccountRef:
-    name: resource-locker-operator-controller-manager
   - id: istio-injection-web
     patchTemplate: |
       spec:
