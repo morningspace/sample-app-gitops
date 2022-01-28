@@ -148,5 +148,18 @@ spec:
       kind: Deployment
       name: web
       namespace: robot-shop
+  - id: istio-injection-redis
+    patchTemplate: |
+      spec:
+        template:
+          metadata:
+            annotations:
+              sidecar.istio.io/inject: "true"
+    patchType: application/merge-patch+json
+    targetObjectRef:
+      apiVersion: apps/v1
+      kind: StatefulSet
+      name: redis
+      namespace: robot-shop
   serviceAccountRef:
     name: resource-locker-operator-controller-manager
