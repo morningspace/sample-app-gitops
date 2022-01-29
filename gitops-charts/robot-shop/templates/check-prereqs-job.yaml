@@ -17,6 +17,10 @@ rules:
   resources:
   - storageclass
   verbs: ["get", "list", "watch"]
+- apiGroups: ["maistra.io"]
+  resources:
+  - servicemeshcontrolplane
+  verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
