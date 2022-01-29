@@ -55,7 +55,7 @@ spec:
               while : ; do
                 if oc get sc -o "jsonpath={.items[*].metadata.annotations['storageclass\.kubernetes\.io/is-default-class']}" | grep -q ^true$; then
                   echo "INFO: Default storage class available."
-                  exit 0
+                  break
                 fi
                 echo "INFO: Default storage class not available, waiting."
                 sleep 10
@@ -65,7 +65,7 @@ spec:
               while : ; do
                 if oc get servicemeshcontrolplane -n istio-system -ojsonpath={.items[*].status.conditions[*].type} | grep -q Ready; then
                   echo "INFO: Service mesh control plane available."
-                  exit 0
+                  break
                 fi
                 echo "INFO: Service mesh control plane not available, waiting."
                 sleep 10
