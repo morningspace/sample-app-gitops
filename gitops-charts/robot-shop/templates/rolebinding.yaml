@@ -26,7 +26,7 @@ rules:
   resources:
   - deployments
   - statefulsets
-  verbs: ["get", "list", "watch"]
+  verbs: ["get", "list", "watch", "patch"]
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
