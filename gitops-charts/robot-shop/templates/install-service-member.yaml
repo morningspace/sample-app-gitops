@@ -4,6 +4,7 @@ metadata:
   namespace: istio-system
   name: default
   annotations:
+    argocd.argoproj.io/sync-wave: "-500"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   members:
