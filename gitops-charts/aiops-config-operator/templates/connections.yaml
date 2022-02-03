@@ -2,7 +2,7 @@
 apiVersion: aiops.ibm.com/v1alpha1
 kind: HumioConnection
 metadata:
-  name: sample
+  name: humio-sample
   annotations:
     argocd.argoproj.io/sync-wave: "100"
 # spec:
@@ -11,7 +11,7 @@ metadata:
 apiVersion: aiops.ibm.com/v1alpha1
 kind: KafkaConnection
 metadata:
-  name: sample
+  name: kafka-sample
   annotations:
     argocd.argoproj.io/sync-wave: "100"
 # spec:
@@ -20,7 +20,7 @@ metadata:
 apiVersion: aiops.ibm.com/v1alpha1
 kind: KubeConnection
 metadata:
-  name: sample
+  name: kube-sample
   annotations:
     argocd.argoproj.io/sync-wave: "100"
 # spec:
