@@ -1,0 +1,27 @@
+---
+apiVersion: aiops.ibm.com/v1alpha1
+kind: HumioConnection
+metadata:
+  name: sample
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+# spec:
+  # Add fields here
+---
+apiVersion: aiops.ibm.com/v1alpha1
+kind: KafkaConnection
+metadata:
+  name: sample
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+# spec:
+  # Add fields here
+---
+apiVersion: aiops.ibm.com/v1alpha1
+kind: KubeConnection
+metadata:
+  name: sample
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+# spec:
+  # Add fields here
