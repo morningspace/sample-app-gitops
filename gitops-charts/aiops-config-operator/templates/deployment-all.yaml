@@ -410,15 +410,17 @@ spec:
           httpGet:
             path: /healthz
             port: 6789
-          initialDelaySeconds: 15
-          periodSeconds: 20
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          timeoutSeconds: 20
         name: manager
         readinessProbe:
           httpGet:
             path: /readyz
             port: 6789
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          initialDelaySeconds: 10
+          periodSeconds: 20
+          timeoutSeconds: 20
         securityContext:
           allowPrivilegeEscalation: false
       securityContext:
