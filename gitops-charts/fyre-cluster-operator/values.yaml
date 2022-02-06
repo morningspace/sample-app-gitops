@@ -4,3 +4,5 @@ fyre:
     username: REPLACE_IT
     password: REPLACE_IT
     product_group_id: REPLACE_IT
+argo:
+  namespace: openshift-gitops

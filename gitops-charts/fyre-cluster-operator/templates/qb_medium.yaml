@@ -8,6 +8,5 @@ spec:
   providerSecretRef: {{ default "default" .Release.Namespace }}-fyre-secret
   ocpVersion: "4.8.27"
   size: "medium"
-  # argocd:
-  #   support: true
-  #   namespace: argocd
+  argocd:
+    namespace: {{ .Values.argo.namespace }}
