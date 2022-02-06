@@ -277,7 +277,7 @@ spec:
         env:
         - name: ANSIBLE_GATHERING
           value: explicit
-        image: quay.io/moyingbj/fyre-cluster-operator:0.0.1
+        image: quay.io/moyingbj/fyre-cluster-operator:0.0.2
         livenessProbe:
           httpGet:
             path: /healthz
