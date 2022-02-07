@@ -6,18 +6,18 @@ metadata:
 spec:
   group: clusters.ibm.com
   names:
-    kind: OpenShiftCluster
-    listKind: OpenShiftClusterList
-    plural: openshiftclusters
+    kind: OpenShiftFyre
+    listKind: OpenShiftFyreList
+    plural: openshiftfyres
     shortNames:
     - ocpfyre
-    singular: openshiftcluster
+    singular: openshiftfyre
   scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: OpenShiftCluster is the Schema for the openshiftclusters API
+        description: OpenShiftFyre is the Schema for the openshiftfyres API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -32,11 +32,11 @@ spec:
           metadata:
             type: object
           spec:
-            description: Spec defines the desired state of OpenShiftCluster
+            description: Spec defines the desired state of OpenShiftFyre
             type: object
             x-kubernetes-preserve-unknown-fields: true
           status:
-            description: Status defines the observed state of OpenShiftCluster
+            description: Status defines the observed state of OpenShiftFyre
             type: object
             x-kubernetes-preserve-unknown-fields: true
         type: object
@@ -127,9 +127,9 @@ rules:
 - apiGroups:
   - clusters.ibm.com
   resources:
-  - openshiftclusters
-  - openshiftclusters/status
-  - openshiftclusters/finalizers
+  - openshiftfyres
+  - openshiftfyres/status
+  - openshiftfyres/finalizers
   verbs:
   - create
   - delete
