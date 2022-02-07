@@ -1,7 +1,7 @@
-apiVersion: fyre.ibm.com/v1alpha1
-kind: OpenShiftCluster
+apiVersion: clusters.ibm.com/v1alpha1
+kind: OpenShiftFyre
 metadata:
-  name: openshiftcluster-qb-medium
+  name: openshiftfyre-qb-medium
   namespace: {{ default "default" .Release.Namespace }}
 spec:
   # Add fields here

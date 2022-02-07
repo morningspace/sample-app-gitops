@@ -2,15 +2,15 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: openshiftclusters.fyre.ibm.com
+  name: openshiftfyres.clusters.ibm.com
 spec:
-  group: fyre.ibm.com
+  group: clusters.ibm.com
   names:
     kind: OpenShiftCluster
     listKind: OpenShiftClusterList
     plural: openshiftclusters
     shortNames:
-    - fyreocp
+    - ocpfyre
     singular: openshiftcluster
   scope: Namespaced
   versions:
@@ -48,13 +48,13 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: fyre-cluster-operator-controller-manager
+  name: cluster-operator-fyre-controller-manager
   namespace: {{ default "default" .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: fyre-cluster-operator-leader-election-role
+  name: cluster-operator-fyre-leader-election-role
   namespace: {{ default "default" .Release.Namespace }}
 rules:
 - apiGroups:
@@ -92,7 +92,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: fyre-cluster-operator-manager-role
+  name: cluster-operator-fyre-manager-role
 rules:
 - apiGroups:
   - ""
@@ -125,7 +125,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - fyre.ibm.com
+  - clusters.ibm.com
   resources:
   - openshiftclusters
   - openshiftclusters/status
@@ -142,7 +142,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: fyre-cluster-operator-metrics-reader
+  name: cluster-operator-fyre-metrics-reader
 rules:
 - nonResourceURLs:
   - /metrics
@@ -152,7 +152,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: fyre-cluster-operator-proxy-role
+  name: cluster-operator-fyre-proxy-role
 rules:
 - apiGroups:
   - authentication.k8s.io
@@ -170,41 +170,41 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: fyre-cluster-operator-leader-election-rolebinding
+  name: cluster-operator-fyre-leader-election-rolebinding
   namespace: {{ default "default" .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: fyre-cluster-operator-leader-election-role
+  name: cluster-operator-fyre-leader-election-role
 subjects:
 - kind: ServiceAccount
-  name: fyre-cluster-operator-controller-manager
+  name: cluster-operator-fyre-controller-manager
   namespace: {{ default "default" .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: fyre-cluster-operator-manager-rolebinding
+  name: cluster-operator-fyre-manager-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: fyre-cluster-operator-manager-role
+  name: cluster-operator-fyre-manager-role
 subjects:
 - kind: ServiceAccount
-  name: fyre-cluster-operator-controller-manager
+  name: cluster-operator-fyre-controller-manager
   namespace: {{ default "default" .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: fyre-cluster-operator-proxy-rolebinding
+  name: cluster-operator-fyre-proxy-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: fyre-cluster-operator-proxy-role
+  name: cluster-operator-fyre-proxy-role
 subjects:
 - kind: ServiceAccount
-  name: fyre-cluster-operator-controller-manager
+  name: cluster-operator-fyre-controller-manager
   namespace: {{ default "default" .Release.Namespace }}
 ---
 apiVersion: v1
@@ -221,7 +221,7 @@ data:
       resourceName: 811c9dc5.ibm.com
 kind: ConfigMap
 metadata:
-  name: fyre-cluster-operator-manager-config
+  name: cluster-operator-fyre-manager-config
   namespace: {{ default "default" .Release.Namespace }}
 ---
 apiVersion: v1
@@ -229,7 +229,7 @@ kind: Service
 metadata:
   labels:
     control-plane: controller-manager
-  name: fyre-cluster-operator-controller-manager-metrics-service
+  name: cluster-operator-fyre-controller-manager-metrics-service
   namespace: {{ default "default" .Release.Namespace }}
 spec:
   ports:
@@ -245,7 +245,7 @@ kind: Deployment
 metadata:
   labels:
     control-plane: controller-manager
-  name: fyre-cluster-operator-controller-manager
+  name: cluster-operator-fyre-controller-manager
   namespace: {{ default "default" .Release.Namespace }}
 spec:
   replicas: 1
@@ -273,11 +273,11 @@ spec:
         - --health-probe-bind-address=:6789
         - --metrics-bind-address=127.0.0.1:8080
         - --leader-elect
-        - --leader-election-id=fyre-cluster-operator
+        - --leader-election-id=cluster-operator-fyre
         env:
         - name: ANSIBLE_GATHERING
           value: explicit
-        image: quay.io/moyingbj/fyre-cluster-operator:0.0.9
+        image: quay.io/moyingbj/cluster-operator-fyre:0.0.10
         livenessProbe:
           httpGet:
             path: /healthz
@@ -295,5 +295,5 @@ spec:
           allowPrivilegeEscalation: false
       securityContext:
         runAsNonRoot: true
-      serviceAccountName: fyre-cluster-operator-controller-manager
+      serviceAccountName: cluster-operator-fyre-controller-manager
       terminationGracePeriodSeconds: 10
