@@ -113,6 +113,7 @@ In this example, we will use `https://my-target-cluster-domain.com:6443` as the 
 
 #### UI Configure Argo CD
 In Argo CD application management, click `NEW APP` button.
+
 - Genrnal section
   - privide a name of your application, for example,  `sample-argo`
   - select desired Project for the deployment, the default project is `default`.
@@ -131,6 +132,7 @@ Click on `CREATE` to create the app.
 
 #### UI Setup Storage
 In Argo CD application management, click `NEW APP` button.
+
 - Genrnal section
   - privide a name of your application, for example,  `sample-storage`
   - select desired Project for the deployment, the default project is `default`.
@@ -149,6 +151,7 @@ Click on `CREATE` to create the app.
   
 rook-cepth storage deployment will take a while, usually over 15 minutes.  
 Use below command to check the rook-ceph deployment status in the target cluster, once deployment completed, all pods should be showing status `Running`.
+
 ```shell
 oc get pod -n rook-ceph
 ```
