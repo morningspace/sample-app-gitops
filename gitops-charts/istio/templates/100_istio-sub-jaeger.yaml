@@ -11,4 +11,3 @@ spec:
   name: jaeger
   source: community-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: jaeger-operator.v1.25.0
